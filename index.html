@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Parameters</title>
+</head>
+
+<body>
+    <h1 id="greeting">Hello, guest!</h1>
+    <p id="theme-display">Your preferred mode is: Default</p>
+
+    <h3 id="secret-message"></h3>
+
+
+</body>
+<script>
+    //get query string from the current URL
+    const queryString = window.location.search;
+
+    // parse the parameters
+    const urlParams = new URLSearchParams(queryString);
+
+    // extract specefic values
+    let userName = urlParams.get('user');
+    let darkMode = urlParams.get('dark');
+    let background = urlParams.get('bg');
+    let font = urlParams.get('font');
+    let size = urlParams.get('size');
+    let code = urlParams.get('code');
+    let user = urlParams.get('status');
+
+    // update the UI
+    if (userName) {
+        document.getElementById('greeting').innerText = 'Hello ' + userName;
+    }
+
+    if (darkMode === 'true') {
+        document.body.style.backgroundColor = "#222";
+        document.body.style.color = "white";
+        document.getElementById('theme-display').innerText = "your preferred mode is: Dark Mode";
+    }
+
+    if (background) {
+        document.body.style.backgroundColor = background;
+    }
+
+    if (font) {
+        document.body.style.fontFamily = font;
+    }
+
+    if (size) {
+        document.body.style.fontSize = size;
+    }
+
+    if (code == 12345 && user == 'admin') {
+        document.body.style.backgroundColor = "#e8e8e8";
+        document.getElementById('greeting').style.display = 'none';
+        document.getElementById('theme-display').style.display = 'none';
+        document.getElementById('secret-message').innerText = "congratulations! you have cracked the code!"
+    }
+
+</script>
+
+</html>
